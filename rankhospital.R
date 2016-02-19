@@ -19,12 +19,13 @@ rankhospital <- function(state, outcome, num = "best"){
       hospital_frame <- hospital_frame[hospital_frame$outcome != "Not Available" ,]
       hospital_frame$outcome <- as.numeric(hospital_frame$outcome)
       hospital_frame <- hospital_frame[order(hospital_frame$outcome, hospital_frame$name),]
-      hospital_frame$rank <- 1:nrow(hospital_frame)
+      #hospital_frame$rank <- 1:nrow(hospital_frame)
       
-      num <- if(num == "best") {1}
-      else if(num == "worst") {nrow(hospital_frame)}
-      else {num}
       
-      if(num > nrow(hospital_frame)) {return(NA)}
-      else{return(hospital_frame$name[num])}
+      mu <- if (num == "best") {1
+      } else if (num == "worst") {nrow(hospital_frame)
+      } else {num}
+ 
+      if(mu > nrow(hospital_frame)) {return(NA)}
+      else{return(hospital_frame$name[mu])}
 }
